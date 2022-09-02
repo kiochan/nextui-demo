@@ -126,3 +126,8 @@ dist
 
 # next.js typescript
 next-env.d.ts
+
+# lockfile
+package-lock.json
+yarn.lock
+pmpm-lock.yaml
