@@ -17,8 +17,9 @@
     "react-dom": "18.2.0",
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1"
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-compress": "^4.2.0",
+    "redux-persist-transform-encrypt": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "18.7.13",

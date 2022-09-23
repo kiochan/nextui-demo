@@ -14,8 +14,9 @@ specifiers:
   react-dom: 18.2.0
   react-redux: ^8.0.2
   redux: ^4.2.0
-  redux-devtools-extension: ^2.13.9
-  redux-thunk: ^2.4.1
+  redux-persist: ^6.0.0
+  redux-persist-transform-compress: ^4.2.0
+  redux-persist-transform-encrypt: ^4.0.0
   typescript: 4.8.2
 
 dependencies:
@@ -27,8 +28,9 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-redux: 8.0.2_7cb98b5ac949009264a5bdd1182b7e80
   redux: 4.2.0
-  redux-devtools-extension: 2.13.9_redux@4.2.0
-  redux-thunk: 2.4.1_redux@4.2.0
+  redux-persist: 6.0.0_redux@4.2.0
+  redux-persist-transform-compress: 4.2.0_redux-persist@6.0.0
+  redux-persist-transform-encrypt: 4.0.0_redux-persist@6.0.0+redux@4.2.0
 
 devDependencies:
   '@types/node': 18.7.13
@@ -1325,6 +1327,10 @@ packages:
       which: 2.0.2
     dev: true
 
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
+
   /csstype/3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
 
@@ -2061,6 +2067,10 @@ packages:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
     dev: true
 
+  /json-stringify-safe/5.0.1:
+    resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
+    dev: false
+
   /json5/1.0.1:
     resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
     hasBin: true
@@ -2117,6 +2127,11 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lz-string/1.4.4:
+    resolution: {integrity: sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==}
+    hasBin: true
+    dev: false
 
   /merge2/1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -2439,11 +2454,32 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
-  /redux-devtools-extension/2.13.9_redux@4.2.0:
-    resolution: {integrity: sha512-cNJ8Q/EtjhQaZ71c8I9+BPySIBVEKssbPpskBfsXqb8HJ002A3KRVHfeRzwRo6mGPqsm7XuHTqNSNeS1Khig0A==}
-    deprecated: Package moved to @redux-devtools/extension.
+  /redux-persist-transform-compress/4.2.0_redux-persist@6.0.0:
+    resolution: {integrity: sha512-sg+KIfMUlm3/N38/wlmr+ZqoF/7a2Q9MAjFdM/FOtfmlAfZQy0+LhUA+tDWCFgXqglViCtmivtmpWWwmNUGJuw==}
     peerDependencies:
-      redux: ^3.1.0 || ^4.0.0
+      redux-persist: '>=4.0.0'
+    dependencies:
+      json-stringify-safe: 5.0.1
+      lz-string: 1.4.4
+      redux-persist: 6.0.0_redux@4.2.0
+    dev: false
+
+  /redux-persist-transform-encrypt/4.0.0_redux-persist@6.0.0+redux@4.2.0:
+    resolution: {integrity: sha512-F+ynB4v8rgipI7xJyXo6b/dSWDydIAz56AyvCJH+K1LWHQzlwV6/i/mU9XrKxyog9qY56C+1Rizmk9ztw9ailA==}
+    peerDependencies:
+      redux: '>3.0.0'
+      redux-persist: ^6.x.x
+    dependencies:
+      crypto-js: 4.1.1
+      json-stringify-safe: 5.0.1
+      redux: 4.2.0
+      redux-persist: 6.0.0_redux@4.2.0
+    dev: false
+
+  /redux-persist/6.0.0_redux@4.2.0:
+    resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
+    peerDependencies:
+      redux: '>4.0.0'
     dependencies:
       redux: 4.2.0
     dev: false

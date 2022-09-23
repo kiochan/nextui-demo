@@ -1,16 +1,17 @@
-import { StatsBase } from 'fs'
 import type { NextPage as Page } from 'next'
 
-import { useSelector } from 'react-redux'
-import { State } from '../client-store/initialState'
+import { useAppDispatch, useAppSelector } from '../client-store/hooks'
 
 const Home: Page = () => {
-  const counter = useSelector<State, number>((state) => state.testValue.counter)
+  const counter = useAppSelector(s => s.testCounter.value)
+  const dispatch = useAppDispatch()
+
+  const addOne = () => dispatch({ type: 'counter/increment' })
 
   return (
     <div>
       <span>{counter}</span>
-      <button>add 1</button>
+      <button onClick={addOne}>add 1</button>
     </div>
   )
 }
