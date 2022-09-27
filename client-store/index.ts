@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 
-import { combineReducers, Store } from "redux";
+import { combineReducers } from "redux";
 
 import { persistStore, persistReducer, PersistConfig } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -14,7 +14,9 @@ export * from "./hooks";
 
 export type StoreState = typeof initial;
 
-let store: Store<StoreState> | void;
+export type Store = ReturnType<typeof initStore>;
+
+let store: Store | void;
 
 const persistConfig: PersistConfig<StoreState, string> = {
   key: "root",
@@ -27,7 +29,7 @@ function initStore(preloadedState: StoreState) {
 
   const reducer = persistReducer(persistConfig, combinedReducer);
 
-  return configureStore({
+  const store = configureStore({
     reducer,
     preloadedState,
     middleware: (getDefaultMiddleware) =>
@@ -37,6 +39,8 @@ function initStore(preloadedState: StoreState) {
         serializableCheck: false,
       }),
   });
+
+  return store;
 }
 
 export const initializeStore = (preloadedState: StoreState) => {
