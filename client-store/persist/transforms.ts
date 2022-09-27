@@ -7,6 +7,8 @@ import { defaultSecretKey } from "../../settings/client-store-encrypt";
 import whitelist from "../../settings/client-store-transform-whitelist";
 import { StoreState } from "..";
 
+const DEV = true;
+
 const demoTransform = createTransform<StoreState, StoreState>(
   // transform state on its way to being serialized and persisted.
   (inboundState, key) => {
@@ -41,8 +43,6 @@ const compressor = createCompressor<StoreState, string>({
   whitelist,
 });
 
-export const transforms: Transform<StoreState, any>[] = [
-  demoTransform,
-  encrypt,
-  compressor,
-];
+export const transforms: Transform<StoreState, any>[] = DEV
+  ? [demoTransform]
+  : [demoTransform, encrypt, compressor];

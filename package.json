@@ -19,7 +19,8 @@
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
     "redux-persist-transform-compress": "^4.2.0",
-    "redux-persist-transform-encrypt": "^4.0.0"
+    "redux-persist-transform-encrypt": "^4.0.0",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "18.7.13",
