@@ -4,7 +4,7 @@ import type { NextPage as Page } from 'next'
 import useSWR, { Fetcher } from 'swr'
 
 import { useAppDispatch, useAppSelector } from '../client-store/hooks'
-import type { ApiTestData } from './api/test'
+import type { ApiTestData } from './api/now'
 
 const fetcher: Fetcher<ApiTestData, string> =
   (url: string) => fetch(url).then((res) => res.json()) as Promise<ApiTestData>
@@ -15,14 +15,14 @@ const Home: Page = () => {
 
   const addOne = () => dispatch({ type: 'counter/increment' })
 
-  const { data, error } = useSWR('/api/test', fetcher, {
-    refreshInterval: 1000
+  const { data, error } = useSWR('/api/now', fetcher, {
+    refreshInterval: 5000
   })
 
   let message: string
-  if (error) message = 'failed to load: error = "' + String(error) + '"'
-  if (!data) message = 'loading...'
-  else message = data.status
+  if (error) message = `ERROR! [${error}]`
+  else if (!data) message = 'PENDING...'
+  else message = `OK [${new Date(data.data.now).toLocaleString()}]`
 
   return (
     <div>
