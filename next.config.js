@@ -2,9 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  /*
   experimental: {
-    reactMode: "concurrent",
+    reactRoot: "concurrent",
   },
+  */
 };
 
 module.exports = nextConfig;
