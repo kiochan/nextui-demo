@@ -2,12 +2,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export interface ApiTestData {
-  status: "ok";
+  status: string;
 }
 
-export default function apiTestDataHandler(
+function wait(sec: number) {
+  return new Promise<void>(resolve => {
+    setTimeout(resolve, sec * 1000.0)
+  })
+}
+
+export default async function apiTestDataHandler(
   req: NextApiRequest,
   res: NextApiResponse<ApiTestData>
 ) {
-  res.status(200).json({ status: "ok" });
+  await wait(1)
+  res.status(200).json({ status: `ok (timestamp = ${Date.now()})` })
 }
