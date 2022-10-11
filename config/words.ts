@@ -1,4 +1,4 @@
-export default {
+const words = {
     site: {
         name: "Estryllia Enhillia",
         titles: {
@@ -13,6 +13,7 @@ export default {
             news: "最近のイベント",
             staff: "STAFF",
             redirect: "再ルーティング",
+            productDetails: "商品詳細",
             en: {
                 home: "TOP",
                 news: "NEWS",
@@ -27,3 +28,5 @@ export default {
     terms: "Terms",
     privacy: "Privacy",
 }
+
+export default words

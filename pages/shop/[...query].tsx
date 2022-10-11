@@ -9,6 +9,7 @@ import ContentPageSelector from "../../components/view/ContentPageSelector"
 import { Box, Typography } from "@mui/material"
 
 import { Card, Grid, Row, Text, Button } from "@nextui-org/react";
+import useShopItems from "../../fake-data/useShopItems"
 
 function parsePage(str: string | undefined | null, max = Infinity): number {
     if (str === undefined || str === null || str === "") return 1
@@ -20,25 +21,10 @@ function needRedirect(str: string): boolean {
     return String(pageNumber) !== str
 }
 
-interface ShopItem {
-    id: string
-    name: string
-    image: string
-    prise: number
-    description: string
-}
-
-const shopItemLIst: ShopItem[] = new Array(1005).fill(0)
-    .map((_, i) => ({
-        id: String(i),
-        name: "商品 " + String(i + 1).padStart(4, '0'),
-        image: '',
-        prise: 10000 + i * 10 + (i * 0.05 % 0.52),
-        description: '製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明製品説明'
-
-    }) as ShopItem)
 
 const ShopPage: React.FC = () => {
+
+    const shopItems = useShopItems()
 
     const router = useRouter()
     const query = router.query?.query ?? []
@@ -51,7 +37,7 @@ const ShopPage: React.FC = () => {
         search = query[1]
     }
 
-    const currentShopItemLIst = shopItemLIst
+    const currentShopItemLIst = shopItems
         .filter(data => (
             search ? data.name.match(search) : true
         ))
@@ -101,7 +87,7 @@ const ShopPage: React.FC = () => {
             }}>
 
                 {
-                    shopItemLIst ?
+                    shopItems ?
                         <Grid.Container gap={2} css={{ mw: "1000px" }} justify="flex-start"> {
                             currentShopItemLIst
                                 .slice(
@@ -111,10 +97,14 @@ const ShopPage: React.FC = () => {
                                 .map((data, i) => {
                                     return (
                                         <Grid key={i} xs={12} sm={4}>
-                                            <Card isPressable>
+                                            <Card isPressable onClick={
+                                                () => {
+                                                    router.push('/product/' + data.id)
+                                                }
+                                            }>
                                                 <Card.Body css={{ p: 0 }}>
                                                     <Card.Image
-                                                        src={"/product-images/" + i % 7 + ".jpg"}
+                                                        src={data.image}
                                                         objectFit="cover"
                                                         width="100%"
                                                         height={340}
